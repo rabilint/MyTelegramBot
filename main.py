@@ -246,22 +246,22 @@ def handler(message):
 
     if message.text == "/kubik@ChatHelperByRabilint_bot":
         h = randint(1, 6)
-        bot.send_message(message.chat.id, str(h))
+        bot.send_message(message.chat.id, "@"+message.from_user.username+" "+str(h))
 
     if message.text == "/ban":
-        bot.send_sticker(message.chat.id,
+        bot.send_sticker(message.chat.id,"@"+message.from_user.username+" "+
                              "CAACAgIAAxkBAAEEvfZiggAB4gHTuu2ZTg1dLENsJ-uBjSwAAjYAA7yRNhfaUtiZ6jK5ryQE")
 
     if message.text.lower() == len1:
-        bot.send_sticker(message.chat.id,
+        bot.send_sticker(message.chat.id,"@"+message.from_user.username+" "+
                              "CAACAgIAAxkBAAEEvfhiggF9oo0SdYq83HssAwo3PqACtQAC-xgAAiOwMUuozDpOKtjmrCQE")
 
     if message.text.lower() == len2:
-        bot.send_sticker(message.chat.id, "CAACAgEAAxkBAAEEvfpiggIcbybKYtw-Co5zWwJ3m9AUHwAChQADwKwII6SrOomw-oViJAQ")
+        bot.send_sticker(message.chat.id,"@"+message.from_user.username+" "+ "CAACAgEAAxkBAAEEvfpiggIcbybKYtw-Co5zWwJ3m9AUHwAChQADwKwII6SrOomw-oViJAQ")
 
     if message.text == "/helpad@ChatHelperByRabilint_bot":
         bot.reply_to(message, len3)
-        bot.send_sticker(message.chat.id, "CAACAgEAAxkBAAEEvftiggId8KDs_sqIoaDpK0YgUvn50QACUgADwKwIIy3tvSk347AcJAQ")
+        bot.send_sticker(message.chat.id, "@"+message.from_user.username+" "+"CAACAgEAAxkBAAEEvftiggId8KDs_sqIoaDpK0YgUvn50QACUgADwKwIIy3tvSk347AcJAQ")
 
     #  if message.text == "/language" :
 
@@ -278,7 +278,7 @@ def handler(message):
 
     if message.text == "/ver@ChatHelperByRabilint_bot":
         try:
-            bot.send_message(message.chat.id , len4)
+            bot.send_message(message.chat.id ,"@"+message.from_user.username+" "+ len4)
             print(str(message.from_user.id) + "checking ver ")
         except:
             bot.send_message(message.chat.id, "ver error")
@@ -289,9 +289,9 @@ def handler(message):
     if message.text == "/myid@ChatHelperByRabilint_bot":
         try:
 
-            bot.reply_to(message, len6 + " : " + str(message.from_user.id))
+            bot.reply_to(message, "@"+message.from_user.username+" "+len6 + " : " + str(message.from_user.id))
         except:
-            bot.send_message(message.chat.id, "( id ) error")
+            bot.send_message(message.chat.id,"@"+message.from_user.username+" "+ "( id ) error")
 
     if message.text == "/help@ChatHelperByRabilint_bot":
         try:
@@ -299,7 +299,7 @@ def handler(message):
             bot.reply_to(message,len7)
 
         except:
-            bot.send_message(message.chat.id, "error help")
+            bot.send_message(message.chat.id, "@"+message.from_user.username+" "+"error help")
 
     if message.text == "/balance@ChatHelperByRabilint_bot":
         try:
@@ -317,7 +317,7 @@ def handler(message):
                                     len9+f" : {value[0]}",
                                     parse_mode='html')
         except:
-            bot.send_message(message.chat.id, "balance error")
+            bot.send_message(message.chat.id, "@"+message.from_user.username+" "+"balance error")
 
     if message.text == "/kazino@ChatHelperByRabilint_bot":
 
@@ -350,17 +350,17 @@ def handler(message):
                             tTK = False
                             cursor.execute(
                                 f"UPDATE users SET balance = balance + 500 WHERE id = {message.from_user.id}")
-                            bot.send_message(message.chat.id,
+                            bot.send_message(message.chat.id,"@"+message.from_user.username+" "+
                                          len10+" \n "+len11+ "--->\n" + str(a1) + " " + str(
                                              a2) + " " + str(a3))
                             connect.commit()
                             for value in cursor.execute(f"SELECT balance FROM users WHERE id = {message.from_user.id}"):
-                                bot.send_message(message.chat.id,
+                                bot.send_message(message.chat.id,"@"+message.from_user.username+" "+
                                                  len9+f" : {value[0]}",
                                                  parse_mode='html')
                         if tTK:
                             if a3 and a2 == a1:
-                                bot.send_message(message.chat.id,
+                                bot.send_message(message.chat.id,"@"+message.from_user.username+" "+
                                              len12+" \n "+len11+" --->\n" + str(a1) + " " + str(
                                                  a2) + " " + str(a3))
                                 cursor.execute(
@@ -368,11 +368,11 @@ def handler(message):
                                 connect.commit()
                                 for value in cursor.execute(
                                         f"SELECT balance FROM users WHERE id = {message.from_user.id}"):
-                                    bot.send_message(message.chat.id,
+                                    bot.send_message(message.chat.id,"@"+message.from_user.username+" "+
                                                  len9+f": {value[0]}",
                                                  parse_mode='html')
                     elif tTl == True:
-                        bot.send_message(message.chat.id,
+                        bot.send_message(message.chat.id,"@"+message.from_user.username+" "+
                                      len13+" \n "+len11+"  --->\n" + str(a1) + " " + str(a2) + " " + str(
                                          a3))
             else:
@@ -392,17 +392,17 @@ def handler(message):
                                 tTK = False
                                 cursor.execute(
                                     f"UPDATE users SET balance = balance + 500 WHERE id = {message.from_user.id}")
-                                bot.send_message(message.chat.id,str(len10)+"\n"+str(len11)+" --->\n" + str(a1) + " " + str( a2) + " " + str(a3))
+                                bot.send_message(message.chat.id,"@"+message.from_user.username+" "+str(len10)+"\n"+str(len11)+" --->\n" + str(a1) + " " + str( a2) + " " + str(a3))
                                 connect.commit()
 
                             if tTK:
                                 if a3 and a2 == a1:
-                                    bot.send_message(message.chat.id,str(len12)+"\n"+str(len11)+"  --->\n" + str(a1) + " " + str(a2) + " " + str(a3))
+                                    bot.send_message(message.chat.id,"@"+message.from_user.username+" "+str(len12)+"\n"+str(len11)+"  --->\n" + str(a1) + " " + str(a2) + " " + str(a3))
                                     cursor.execute(
                                         f"UPDATE users SET balance = balance + 100 WHERE id = {message.from_user.id}")
                                     connect.commit()
                         elif tTl == True:
-                            bot.send_message(message.chat.id,str(len13)+"\n"+str(len11)+"  --->\n" + str(a1) + " " + str(a2) + " " + str(a3))
+                            bot.send_message(message.chat.id,"@"+message.from_user.username+" "+str(len13)+"\n"+str(len11)+"  --->\n" + str(a1) + " " + str(a2) + " " + str(a3))
 
         # if message.text == "/time@ChatHelperByRabilint_bot":  #
         #    a = datetime.datetime.now()
@@ -430,9 +430,9 @@ def handler(message):
                                    (message.from_user.id, message.from_user.username, b, 0, 0, 0))
                     connect.commit()
                     print("new user)" + str(message.from_user.id))
-                    bot.send_message(message.chat.id, len14)
+                    bot.send_message(message.chat.id, "@"+message.from_user.username+" "+ len14)
                 else:
-                    bot.send_message(message.chat.id, len15)
+                    bot.send_message(message.chat.id, "@"+message.from_user.username+" "+len15)
             except:
                 bot.send_message(message.chat.id, "reg error")
 
@@ -443,7 +443,7 @@ def handler(message):
                 cursor.execute(f"DELETE FROM users WHERE id = {message.from_user.id}")
                 connect.commit()
                 print("minus user (" + str(message.from_user.id))
-                bot.send_message(message.chat.id, len16)
+                bot.send_message(message.chat.id, "@"+message.from_user.username+" "+len16)
             except:
                 bot.send_message(message.chat.id, "error del")
 
@@ -460,11 +460,11 @@ def handler(message):
                     Rabilint = toOrdinal
                     answ = Rabilint - int(b)
                     if answ == 0:
-                        bot.send_message(message.chat.id, len17)
+                        bot.send_message(message.chat.id,"@"+message.from_user.username+" "+ " "+len17)
                     else:
-                        bot.send_message(message.chat.id, str(answ) + len18)
+                        bot.send_message(message.chat.id, "@"+message.from_user.username+" "+str(answ) +" "+ len18)
                 except:
-                    bot.send_message(message.chat.id, len19)
+                    bot.send_message(message.chat.id, "@"+message.from_user.username+" "+" "+len19)
             except:
                 bot.send_message(message.chat.id, "when error")
 
@@ -493,7 +493,7 @@ def handler(message):
                                (message.from_user.id, message.from_user.username, b, 0, a1, 0))
                 connect.commit()
                 for value in cursor.execute(f"SELECT Dick FROM users WHERE id = {message.from_user.id}"):
-                    bot.send_message(message.chat.id,
+                    bot.send_message(message.chat.id,"@"+message.from_user.username+" "+
                                      str(len23)+f" " + str(a1) +" "+str(len28)+" "+
                                      str(len24)+f" : {value[0]} см",
                                      parse_mode='html')
@@ -511,12 +511,12 @@ def handler(message):
                     cursor.execute(f"UPDATE users SET timer = {b} WHERE id = {message.from_user.id}")
                     connect.commit()
                     for value in cursor.execute(f"SELECT Dick FROM users WHERE id = {message.from_user.id}"):
-                        bot.send_message(message.chat.id,
+                        bot.send_message(message.chat.id,"@"+message.from_user.username+" "+
                                          str(len23) + f" " + str(a1) + " " + str(len28) + " " +
                                          str(len24) + f" : {value[0]} см",
                                          parse_mode='html')
                 else:
-                    bot.send_message(message.chat.id, len25)
+                    bot.send_message(message.chat.id,"@"+message.from_user.username+" "+ len25)
 
         # //////////////////////////////////
     if message.text == "/howlong@ChatHelperByRabilint_bot":
@@ -528,22 +528,22 @@ def handler(message):
                 bot.reply_to(message, len26)
             else:
                 for value in cursor.execute(f"SELECT Dick FROM users WHERE id = {message.from_user.id}"):
-                    bot.send_message(message.chat.id,
+                    bot.send_message(message.chat.id,"@"+message.from_user.username+
                                      str(len27) + f" : {value[0]} ",
                                      parse_mode='html')
 
     if message.text == "/chlanUA@ChatHelperByRabilint_bot":
             cursor.execute(f"UPDATE SS SET language = {1} WHERE id = {message.chat.id}")
             connect.commit()
-            bot.send_message(message.chat.id, len29)
+            bot.send_message(message.chat.id, "@"+message.from_user.username+" "+len29)
     if message.text == "/chlanBEL@ChatHelperByRabilint_bot":
             cursor.execute(f"UPDATE SS SET language = {2} WHERE id = {message.chat.id}")
             connect.commit()
-            bot.send_message(message.chat.id, len30)
+            bot.send_message(message.chat.id,"@"+message.from_user.username+" "+ len30)
     if message.text == "/chlanENG@ChatHelperByRabilint_bot":
         cursor.execute(f"UPDATE SS SET language = {0} WHERE id = {message.chat.id}")
         connect.commit()
-        bot.send_message(message.chat.id, len31)
+        bot.send_message(message.chat.id,"@"+message.from_user.username+" "+ len31)
 
 
 bot.polling(none_stop=True)
