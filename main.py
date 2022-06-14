@@ -376,6 +376,13 @@ def handler(message):
                                      len13+" \n "+len11+"  --->\n" + str(a1) + " " + str(a2) + " " + str(
                                          a3))
             else:
+                connect = sqlite3.connect('premium')
+                cursor = connect.cursor()
+                cursor.execute(f"SELECT id FROM premium WHERE id = '{message.from_user.id}'")
+                data = cursor.fetchone()  # проверяем, есть ли такая запись в таблице
+                if data is None:
+                        connect = sqlite3.connect('users.db')
+                        cursor = connect.cursor()
                         a1 = randint(1, 3)
                         print("play kazino " + str(message.from_user.id))
                         a2 = randint(1 , 3)
@@ -403,7 +410,37 @@ def handler(message):
                                     connect.commit()
                         elif tTl == True:
                             bot.send_message(message.chat.id,"@"+message.from_user.username+" "+str(len13)+"\n"+str(len11)+"  --->\n" + str(a1) + " " + str(a2) + " " + str(a3))
+                else :
+                    a1 = randint(1, 3)
+                    a2 = randint(1, 3)
+                    connect = sqlite3.connect('users.db')
+                    cursor = connect.cursor()
+                    if a1 != a2:
+                        tTl = True
+                    if a2 != a1:
+                        tTl = True
+                    if tTl == False:
+                        if a1 and a2  == 3:
+                            tTK = False
+                            cursor.execute(
+                                f"UPDATE users SET balance = balance + 500 WHERE id = {message.from_user.id}")
+                            bot.send_message(message.chat.id,
+                                             "@" + message.from_user.username + " " + str(len10) + "\n" + str(
+                                                 len11) + " --->\n" + str(a1) + " " + str(a2) )
+                            connect.commit()
 
+                        if tTK:
+                            if  a2 == a1:
+                                bot.send_message(message.chat.id,
+                                                 "@" + message.from_user.username + " " + str(len12) + "\n" + str(
+                                                     len11) + "  --->\n" + str(a1) + " " + str(a2) )
+                                cursor.execute(
+                                    f"UPDATE users SET balance = balance + 100 WHERE id = {message.from_user.id}")
+                                connect.commit()
+                    elif tTl == True:
+                        bot.send_message(message.chat.id,
+                                         "@" + message.from_user.username + " " + str(len13) + "\n" + str(
+                                             len11) + "  --->\n" + str(a1) + " " + str(a2) )
         # if message.text == "/time@ChatHelperByRabilint_bot":  #
         #    a = datetime.datetime.now()
         #    c = str(a.hour) + ' : ' + str(a.minute) + " : " + str(a.second)
@@ -498,25 +535,54 @@ def handler(message):
                                      str(len24)+f" : {value[0]} см",
                                      parse_mode='html')
             else:
-                a1 = randint(-5, 10)
-                d = a1
-                user_id = message.from_user.id
-                a = datetime.datetime.now()
-                b2 = toOrdinal
-                b1 = cursor.execute('SELECT timer FROM users WHERE id=:user_id',
-                                    {"user_id": user_id}).fetchone()[0]
-                if int(b1) < int(b2):
-                    cursor.execute(f"UPDATE users SET Dick = Dick + {d} WHERE id = {message.from_user.id}")
-                    b = toOrdinal
-                    cursor.execute(f"UPDATE users SET timer = {b} WHERE id = {message.from_user.id}")
-                    connect.commit()
-                    for value in cursor.execute(f"SELECT Dick FROM users WHERE id = {message.from_user.id}"):
-                        bot.send_message(message.chat.id,"@"+message.from_user.username+" "+
-                                         str(len23) + f" " + str(a1) + " " + str(len28) + " " +
-                                         str(len24) + f" : {value[0]} см",
-                                         parse_mode='html')
+                connect = sqlite3.connect('premium')
+                cursor = connect.cursor()
+                cursor.execute(f"SELECT id FROM premium WHERE id = '{message.from_user.id}'")
+                data = cursor.fetchone()  # проверяем, есть ли такая запись в таблице
+                if data is None:
+                    connect = sqlite3.connect('users.db')
+                    cursor = connect.cursor()
+                    a1 = randint(-5, 10)
+                    d = a1
+                    user_id = message.from_user.id
+                    a = datetime.datetime.now()
+                    b2 = toOrdinal
+                    b1 = cursor.execute('SELECT timer FROM users WHERE id=:user_id',
+                                        {"user_id": user_id}).fetchone()[0]
+                    if int(b1) < int(b2):
+                        cursor.execute(f"UPDATE users SET Dick = Dick + {d} WHERE id = {message.from_user.id}")
+                        b = toOrdinal
+                        cursor.execute(f"UPDATE users SET timer = {b} WHERE id = {message.from_user.id}")
+                        connect.commit()
+                        for value in cursor.execute(f"SELECT Dick FROM users WHERE id = {message.from_user.id}"):
+                            bot.send_message(message.chat.id,"@"+message.from_user.username+" "+
+                                             str(len23) + f" " + str(a1) + " " + str(len28) + " " +
+                                             str(len24) + f" : {value[0]} см",
+                                             parse_mode='html')
+                    else:
+                        bot.send_message(message.chat.id,"@"+message.from_user.username+" "+ len25)
                 else:
-                    bot.send_message(message.chat.id,"@"+message.from_user.username+" "+ len25)
+                    connect = sqlite3.connect('users.db')
+                    cursor = connect.cursor()
+                    a1 = randint(-3, 15)
+                    d = a1
+                    user_id = message.from_user.id
+                    a = datetime.datetime.now()
+                    b2 = toOrdinal
+                    b1 = cursor.execute('SELECT timer FROM users WHERE id=:user_id',
+                                        {"user_id": user_id}).fetchone()[0]
+                    if int(b1) < int(b2):
+                        cursor.execute(f"UPDATE users SET Dick = Dick + {d} WHERE id = {message.from_user.id}")
+                        b = toOrdinal
+                        cursor.execute(f"UPDATE users SET timer = {b} WHERE id = {message.from_user.id}")
+                        connect.commit()
+                        for value in cursor.execute(f"SELECT Dick FROM users WHERE id = {message.from_user.id}"):
+                            bot.send_message(message.chat.id, "@" + message.from_user.username + " " +
+                                             str(len23) + f" " + str(a1) + " " + str(len28) + " " +
+                                             str(len24) + f" : {value[0]} см",
+                                             parse_mode='html')
+                    else:
+                        bot.send_message(message.chat.id, "@" + message.from_user.username + " " + len25)
 
         # //////////////////////////////////
     if message.text == "/howlong@ChatHelperByRabilint_bot":
@@ -545,5 +611,13 @@ def handler(message):
         connect.commit()
         bot.send_message(message.chat.id,"@"+message.from_user.username+" "+ len31)
 
-
+    if message.text == "/status@ChatHelperByRabilint_bot":
+        connect = sqlite3.connect('premium')
+        cursor = connect.cursor()
+        cursor.execute(f"SELECT id FROM premium WHERE id = '{message.from_user.id}'")
+        data = cursor.fetchone()  # проверяем, есть ли такая запись в таблице
+        if data is None:
+            bot.send_message(message.chat.id,"@" + message.from_user.username + " " + " you have standart akk" )
+        else :
+            bot.send_message(message.chat.id, "@" + message.from_user.username + " " + " you have premium akk")
 bot.polling(none_stop=True)
