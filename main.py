@@ -109,6 +109,10 @@ def handler(message):
             len30 = f"{value[0]}"
         for value in cursor.execute(f"SELECT ENG FROM languageSS WHERE id = {31}"):
             len31 = f"{value[0]}"
+        for value in cursor.execute(f"SELECT ENG FROM languageSS WHERE id = {32}"):
+            len32 = f"{value[0]}"
+        for value in cursor.execute(f"SELECT ENG FROM languageSS WHERE id = {33}"):
+            len33 = f"{value[0]}"
 
     elif languageSS == 1 :
         connect = sqlite3.connect('languageSS')
@@ -173,8 +177,12 @@ def handler(message):
             len29 = f"{value[0]}"
         for value in cursor.execute(f"SELECT UA FROM languageSS WHERE id = {30}"):
             len30 = f"{value[0]}"
-        for value in cursor.execute(f"SELECT ENG FROM languageSS WHERE id = {31}"):
+        for value in cursor.execute(f"SELECT UA FROM languageSS WHERE id = {31}"):
             len31 = f"{value[0]}"
+        for value in cursor.execute(f"SELECT UA FROM languageSS WHERE id = {32}"):
+            len32 = f"{value[0]}"
+        for value in cursor.execute(f"SELECT UA FROM languageSS WHERE id = {33}"):
+            len33 = f"{value[0]}"
     elif languageSS == 2 :
         connect = sqlite3.connect('languageSS')
         cursor = connect.cursor()
@@ -238,8 +246,12 @@ def handler(message):
             len29 = f"{value[0]}"
         for value in cursor.execute(f"SELECT BEL FROM languageSS WHERE id = {30}"):
             len30 = f"{value[0]}"
-        for value in cursor.execute(f"SELECT ENG FROM languageSS WHERE id = {31}"):
-            len31 = {value[0]}
+        for value in cursor.execute(f"SELECT BEL FROM languageSS WHERE id = {31}"):
+            len31 = f"{value[0]}"
+        for value in cursor.execute(f"SELECT BEL FROM languageSS WHERE id = {32}"):
+            len32 = f"{value[0]}"
+        for value in cursor.execute(f"SELECT BEL FROM languageSS WHERE id = {33}"):
+            len33 = f"{value[0]}"
 
     connect = sqlite3.connect('SS')
     cursor = connect.cursor()
@@ -617,7 +629,7 @@ def handler(message):
         cursor.execute(f"SELECT id FROM premium WHERE id = '{message.from_user.id}'")
         data = cursor.fetchone()  # проверяем, есть ли такая запись в таблице
         if data is None:
-            bot.send_message(message.chat.id,"@" + message.from_user.username + " " + " you have standart akk" )
+            bot.send_message(message.chat.id,"@" + message.from_user.username + " " + str(len33) )
         else :
-            bot.send_message(message.chat.id, "@" + message.from_user.username + " " + " you have premium akk")
+            bot.send_message(message.chat.id, "@" + message.from_user.username + " " + str(len32) )
 bot.polling(none_stop=True)
