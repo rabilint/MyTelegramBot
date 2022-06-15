@@ -5,7 +5,7 @@ import datetime
 import sqlite3
 from random import randint
 
-bot = telebot.TeleBot("")
+bot = telebot.TeleBot("5203531297:AAGDvZd71lGY-qO8PkpvgGnnQtseJDxaDe0")
 
 mm = types.ReplyKeyboardMarkup(row_width=2)
 resize_keyboard = True
@@ -183,6 +183,7 @@ def handler(message):
             len32 = f"{value[0]}"
         for value in cursor.execute(f"SELECT UA FROM languageSS WHERE id = {33}"):
             len33 = f"{value[0]}"
+
     elif languageSS == 2 :
         connect = sqlite3.connect('languageSS')
         cursor = connect.cursor()
@@ -253,6 +254,7 @@ def handler(message):
         for value in cursor.execute(f"SELECT BEL FROM languageSS WHERE id = {33}"):
             len33 = f"{value[0]}"
 
+
     connect = sqlite3.connect('SS')
     cursor = connect.cursor()
 
@@ -261,15 +263,15 @@ def handler(message):
         bot.send_message(message.chat.id, "@"+message.from_user.username+" "+str(h))
 
     if message.text == "/ban":
-        bot.send_sticker(message.chat.id,"@"+message.from_user.username+" "+
+        bot.send_sticker(message.chat.id,
                              "CAACAgIAAxkBAAEEvfZiggAB4gHTuu2ZTg1dLENsJ-uBjSwAAjYAA7yRNhfaUtiZ6jK5ryQE")
 
     if message.text.lower() == len1:
-        bot.send_sticker(message.chat.id,"@"+message.from_user.username+" "+
+        bot.send_sticker(message.chat.id,
                              "CAACAgIAAxkBAAEEvfhiggF9oo0SdYq83HssAwo3PqACtQAC-xgAAiOwMUuozDpOKtjmrCQE")
 
     if message.text.lower() == len2:
-        bot.send_sticker(message.chat.id,"@"+message.from_user.username+" "+ "CAACAgEAAxkBAAEEvfpiggIcbybKYtw-Co5zWwJ3m9AUHwAChQADwKwII6SrOomw-oViJAQ")
+        bot.send_sticker(message.chat.id,"CAACAgEAAxkBAAEEvfpiggIcbybKYtw-Co5zWwJ3m9AUHwAChQADwKwII6SrOomw-oViJAQ")
 
 
     #  if message.text == "/language" :
@@ -629,4 +631,36 @@ def handler(message):
             bot.send_message(message.chat.id,"@" + message.from_user.username + " " + str(len33) )
         else :
             bot.send_message(message.chat.id, "@" + message.from_user.username + " " + str(len32) )
+
+@bot.message_handler(content_types=["new_chat_members"])
+def new_member(message):
+    chat_id = message.chat.id
+
+    connect = sqlite3.connect('SS')
+    cursor = connect.cursor()
+    cursor.execute(f"SELECT id FROM SS WHERE id = '{message.chat.id}'")
+    data = cursor.fetchone()
+
+    if data is None:
+        cursor.execute(f"INSERT INTO SS VALUES(?,?)", (message.chat.id, 0))
+        connect.commit()
+
+    languageSS = cursor.execute('SELECT language FROM SS WHERE id=:chat_id',
+                                {"chat_id": chat_id}).fetchone()[0]
+    connect = sqlite3.connect('languageSS')
+    cursor = connect.cursor()
+    if languageSS == 0:
+        for value in cursor.execute(f"SELECT ENG FROM languageSS WHERE id = {34}"):
+            len34 = f"{value[0]}"
+    elif languageSS == 1:
+        for value in cursor.execute(f"SELECT UA FROM languageSS WHERE id = {34}"):
+            len34 = f"{value[0]}"
+    elif languageSS == 2 :
+        for value in cursor.execute(f"SELECT BEL FROM languageSS WHERE id = {34}"):
+            len34 = f"{value[0]}"
+    name = message.new_chat_members[0].username
+    f = message.chat.title
+    bot.send_message(message.chat.id, len34 + f", @{name} в "+ f + "!")
+    bot.send_sticker(message.chat.id,"CAACAgIAAxkBAAEEwQNig_CavjxrtEXaznluttO1lI7GtAACTgcAAhnydRvabjPscz8R5yQE")
+
 bot.polling(none_stop=True)
