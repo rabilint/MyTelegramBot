@@ -5,7 +5,7 @@ import datetime
 import sqlite3
 from random import randint
 
-bot = telebot.TeleBot("5203531297:AAGDvZd71lGY-qO8PkpvgGnnQtseJDxaDe0")
+bot = telebot.TeleBot("")
 
 mm = types.ReplyKeyboardMarkup(row_width=2)
 resize_keyboard = True
@@ -271,9 +271,6 @@ def handler(message):
     if message.text.lower() == len2:
         bot.send_sticker(message.chat.id,"@"+message.from_user.username+" "+ "CAACAgEAAxkBAAEEvfpiggIcbybKYtw-Co5zWwJ3m9AUHwAChQADwKwII6SrOomw-oViJAQ")
 
-    if message.text == "/helpad@ChatHelperByRabilint_bot":
-        bot.reply_to(message, len3)
-        bot.send_sticker(message.chat.id, "@"+message.from_user.username+" "+"CAACAgEAAxkBAAEEvftiggId8KDs_sqIoaDpK0YgUvn50QACUgADwKwIIy3tvSk347AcJAQ")
 
     #  if message.text == "/language" :
 
@@ -606,7 +603,7 @@ def handler(message):
                 bot.reply_to(message, len26)
             else:
                 for value in cursor.execute(f"SELECT Dick FROM users WHERE id = {message.from_user.id}"):
-                    bot.send_message(message.chat.id,"@"+message.from_user.username+
+                    bot.send_message(message.chat.id,"@"+message.from_user.username+" "+
                                      str(len27) + f" : {value[0]} ",
                                      parse_mode='html')
 
