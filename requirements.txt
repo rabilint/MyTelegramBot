@@ -1,5 +1,5 @@
 telebot
 pyTelegramBotAPI
-randint
+from random import randint
 sqlite3
 datetime
