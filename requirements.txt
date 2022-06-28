@@ -1,3 +1,0 @@
-telebot
-config
-sqlite3
