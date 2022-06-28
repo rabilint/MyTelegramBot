@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Desktop/Herokubot/.idea/Herokubot.iml" filepath="$USER_HOME$/Desktop/Herokubot/.idea/Herokubot.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/MyTelegramBot.iml" filepath="$PROJECT_DIR$/.idea/MyTelegramBot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../testbotHeroku/.idea/testbotHeroku.iml" filepath="$PROJECT_DIR$/../testbotHeroku/.idea/testbotHeroku.iml" />
     </modules>
   </component>
 </project>
