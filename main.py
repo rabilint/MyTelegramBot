@@ -608,7 +608,6 @@ def handler(message):
                     bot.send_message(message.chat.id,"@"+message.from_user.username+" "+
                                      str(len27) + f" : {value[0]} ",
                                      parse_mode='html')
-
     if message.text == "/chlanUA@ChatHelperByRabilint_bot":
             cursor.execute(f"UPDATE SS SET language = {1} WHERE id = {message.chat.id}")
             connect.commit()
@@ -625,13 +624,13 @@ def handler(message):
     if message.text == "/status@ChatHelperByRabilint_bot":
         connect = sqlite3.connect('premium')
         cursor = connect.cursor()
+        print(message.from_user.id)
         cursor.execute(f"SELECT id FROM premium WHERE id = '{message.from_user.id}'")
         data = cursor.fetchone()  # проверяем, есть ли такая запись в таблице
         if data is None:
             bot.send_message(message.chat.id,"@" + message.from_user.username + " " + str(len33) )
         else :
             bot.send_message(message.chat.id, "@" + message.from_user.username + " " + str(len32) )
-
 @bot.message_handler(content_types=["new_chat_members"])
 def new_member(message):
     chat_id = message.chat.id
