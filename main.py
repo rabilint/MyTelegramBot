@@ -286,7 +286,6 @@ def handler(message):
 
         # if message.text == '/start@ChatHelperByRabilint_bot' or "/start" :  #
         # bot.send_message(message.chat.id,"Starting ...", reply_markup=mm)
-
     if message.text == "/ver@ChatHelperByRabilint_bot":
         try:
             bot.send_message(message.chat.id ,"@"+message.from_user.username+" "+ len4)
@@ -633,6 +632,7 @@ def handler(message):
             bot.send_message(message.chat.id, "@" + message.from_user.username + " " + str(len32) )
 @bot.message_handler(content_types=["new_chat_members"])
 def new_member(message):
+    bot.delete_message(message.chat.id, message.message_id)
     chat_id = message.chat.id
 
     connect = sqlite3.connect('SS')
@@ -661,5 +661,33 @@ def new_member(message):
     f = message.chat.title
     bot.send_message(message.chat.id, len34 + f", @{name} в "+ f + "!")
     bot.send_sticker(message.chat.id,"CAACAgIAAxkBAAEEwQNig_CavjxrtEXaznluttO1lI7GtAACTgcAAhnydRvabjPscz8R5yQE")
+
+@bot.message_handler(content_types=["left_chat_member"])
+def left_member(message):
+    connect = sqlite3.connect('SS')
+    cursor = connect.cursor()
+    cursor.execute(f"SELECT id FROM SS WHERE id = '{message.chat.id}'")
+    data = cursor.fetchone()
+
+    if data is None:
+        cursor.execute(f"INSERT INTO SS VALUES(?,?)", (message.chat.id, 0))
+        connect.commit()
+    chat_id = message.chat.id
+    languageSS = cursor.execute('SELECT language FROM SS WHERE id=:chat_id',
+                                {"chat_id": chat_id}).fetchone()[0]
+    connect = sqlite3.connect('languageSS')
+    cursor = connect.cursor()
+    if languageSS == 0:
+        for value in cursor.execute(f"SELECT ENG FROM languageSS WHERE id = {35}"):
+            len35 = f"{value[0]}"
+    elif languageSS == 1:
+        for value in cursor.execute(f"SELECT UA FROM languageSS WHERE id = {35}"):
+            len35 = f"{value[0]}"
+    elif languageSS == 2:
+        for value in cursor.execute(f"SELECT BEL FROM languageSS WHERE id = {35}"):
+            len35 = f"{value[0]}"
+    bot.delete_message(message.chat.id, message.message_id)
+    user_name = message.left_chat_member.username
+    bot.send_message(message.chat.id, len35+" @"+ user_name )
 
 bot.polling(none_stop=True)
