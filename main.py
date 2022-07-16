@@ -689,5 +689,6 @@ def left_member(message):
     bot.delete_message(message.chat.id, message.message_id)
     user_name = message.left_chat_member.username
     bot.send_message(message.chat.id, len35+" @"+ user_name )
+    bot.send_sticker(message.chat.id,"CAACAgIAAxkBAAEFQGVizVqcxcKg8jQTbUemx0MuDOIZcAACjRoAAkDhGEk_t8AjLyQ-wCkE")
 
 bot.polling(none_stop=True)
